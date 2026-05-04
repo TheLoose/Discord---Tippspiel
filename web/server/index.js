@@ -32,6 +32,9 @@ app.use('/api/matchdays',   require('./routes/matchdays'));
 app.use('/api/matches',     require('./routes/matches'));
 app.use('/api/leaderboard', require('./routes/leaderboard'));
 
+app.use(express.static(path.join(__dirname, '../client/dist')));
+app.get('*', (_, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')));
+
 app.get('/health', (_, res) => res.json({ ok: true }));
 
 // ── Start ─────────────────────────────────────────────────────────────────────
